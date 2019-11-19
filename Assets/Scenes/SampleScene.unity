@@ -766,6 +766,9 @@ MonoBehaviour:
   ObstaclesLayer:
     serializedVersion: 2
     m_Bits: 512
+  MovementObstaclesLayer:
+    serializedVersion: 2
+    m_Bits: 4608
   MoveAreaResolution: 4
   MoveAreaEdgeIteration: 4
   MoveAreaEdgeDistanceThreshold: 1

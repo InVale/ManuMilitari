@@ -9,7 +9,7 @@ public class FieldOfView : MonoBehaviour
 {
     const float ViewAngle = 360;
 
-    LayerMask _obstacleMask => SettingManager.Instance.ObstaclesLayer;
+    LayerMask _obstacleMask => SettingManager.Instance.MovementObstaclesLayer;
     float _meshResolution => SettingManager.Instance.MoveAreaResolution;
     int _edgeResolveIterations => SettingManager.Instance.MoveAreaEdgeIteration;
     float _edgeDstThreshold => SettingManager.Instance.MoveAreaEdgeDistanceThreshold;

@@ -14,6 +14,7 @@ public class SettingManager : MonoBehaviour
     public LayerMask SelectionLayer;
     public LayerMask GroundLayer;
     public LayerMask ObstaclesLayer;
+    public LayerMask MovementObstaclesLayer;
 
     [Header("Move Area Visualization")]
     public float MoveAreaResolution;

@@ -25,12 +25,12 @@ public class ProjectileAbility : Ability
         }
         else
             _aimRenderer.gameObject.SetActive(true);
+
+        _aimRenderer.SetPosition(0, Owner.transform.position);
     }
 
     public override void UpdateAiming(Vector3 target)
     {
-        _aimRenderer.SetPosition(0, Owner.transform.position);
-
         Vector3 dir = (target - Owner.transform.position);
         dir.y = 0;
         dir.Normalize();

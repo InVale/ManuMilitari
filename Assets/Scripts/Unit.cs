@@ -50,7 +50,7 @@ public class Unit : MonoBehaviour
 
         Vector2 dir = target - Position;
         Position = target;
-        Rotation = Vector2.SignedAngle(Vector2.up, dir);
+        Rotation = -Vector2.SignedAngle(Vector2.up, dir);
 
         UpdatePos();
 

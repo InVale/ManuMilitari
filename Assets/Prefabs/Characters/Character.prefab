@@ -220,6 +220,7 @@ MonoBehaviour:
   _unitAbilities:
   - {fileID: 11400000, guid: 4ccb8fe2e614fec4193be4344b59f9a1, type: 2}
   - {fileID: 11400000, guid: 415827a8707df2f4c84ab842237b0e88, type: 2}
+  - {fileID: 11400000, guid: 6f6be6db31201be4785acd3d08d2ecc6, type: 2}
 --- !u!135 &-8721612704559938008
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbilityTickable : MonoBehaviour
 {
-    float _duration;
+    protected float _duration;
 
     public void Init (float duration)
     {
