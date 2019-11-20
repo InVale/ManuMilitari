@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TempManager : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class TempManager : MonoBehaviour
     [Space]
     [SerializeField] private Transform[] _playerSpawns;
     [SerializeField] private Transform[] _enemySpawns;
+
+    [Header("Debug")]
+    public bool Build;
+
+    [Header("Reference")]
+    public GameObject TurnButton;
+    public TMP_InputField TurnInput;
+    public TMP_InputField TurnOutput;
+    //public 
 
     [Header("Assets")]
     public Material MovementAreaMaterial;

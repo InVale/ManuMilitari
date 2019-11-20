@@ -19,18 +19,35 @@ public class LogManager : MonoBehaviour
             Instance = this;
     }
 
-    public void LogTurn(List<Player> players)
+    public string LogTurn(List<Player> players)
     {
+        string command = "";
         TurnLogs.Add(new Order[players.Count][]);
+        int turnCount = TurnLogs.Count - 1;
         for (int i = 0; i < players.Count; i++)
         {
-            TurnLogs[TurnLogs.Count - 1][i] = new Order[players[i].Units.Count];
+            TurnLogs[turnCount][i] = new Order[players[i].Units.Count];
             for (int j = 0; j < players[i].Units.Count; j++)
             {
-                //TurnLogs[TurnLogs.Count - 1][i][j] = players[i].Units[j].UnitOrder;
+                Unit unit = players[i].Units[j];
+                TurnLogs[TurnLogs.Count - 1][i][j] = unit.UnitOrder;
+                if (!unit.IsDead && unit.HasOrder)
+                {
+                    command += unit.UnitOrder.Abilities[0].Item1.ToString() + "_" + Mathf.FloorToInt(unit.UnitOrder.Abilities[0].Item2.x * 1000).ToString()
+                        + "_" + Mathf.FloorToInt(unit.UnitOrder.Abilities[0].Item2.y * 1000).ToString();
+                }
+                command += "|";
             }
+            command = command.Remove(command.Length - 1);
+            command += ";";
         }
+        command = command.Remove(command.Length - 1);
+
+        return command;
     }
+
+
+
     /*
     public static T LoadData<T>(string filename, T defaultValue)
     {

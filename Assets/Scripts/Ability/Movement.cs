@@ -126,7 +126,7 @@ public class Movement : Ability
         if (_movementOrderVisualizer)
             _movementOrderVisualizer.gameObject.SetActive(false);
 
-        if (_rangeVisualizer)
+        if (_attackOrderVisualizer)
             _attackOrderVisualizer.gameObject.SetActive(false);
     }
 

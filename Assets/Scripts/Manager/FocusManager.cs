@@ -86,7 +86,7 @@ public class FocusManager : MonoBehaviour
 
     public void FocusUnit (Unit unit)
     {
-        if(unit.Owner.MyType == PlayerType.DEBUG || unit.Owner == TurnManager.Instance.LocalPlayers[TurnManager.Instance.currentLocalPlayer])
+        if((!TempManager.Instance.Build && unit.Owner.MyType == PlayerType.DEBUG) || unit.Owner == TurnManager.Instance.LocalPlayers[TurnManager.Instance.currentLocalPlayer])
         {
             if (FocusedUnit != unit)
             {
