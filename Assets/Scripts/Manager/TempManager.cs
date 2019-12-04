@@ -25,6 +25,7 @@ public class TempManager : MonoBehaviour
 
     [Header("Assets")]
     public Material MovementAreaMaterial;
+    public Material FogViewMaterial;
 
     void Awake()
     {
@@ -32,12 +33,15 @@ public class TempManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
+
+        Shader.SetGlobalInt("_runtime", 1);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Player player = new Player();
+        player.MyType = PlayerType.LOCAL;
         for (int i = 0; i < _playerTeam.Length; i++)
         {
             Unit unit = GameObject.Instantiate(_playerTeam[i], _playerSpawns[i].position, _playerSpawns[i].rotation).GetComponent<Unit>();
@@ -49,6 +53,7 @@ public class TempManager : MonoBehaviour
         TurnManager.Instance.Players.Add(player);
 
         player = new Player();
+        player.MyType = PlayerType.DEBUG;
         for (int i = 0; i < _enemyTeam.Length; i++)
         {
             Unit unit = GameObject.Instantiate(_enemyTeam[i], _enemySpawns[i].position, _enemySpawns[i].rotation).GetComponent<Unit>();
@@ -59,5 +64,10 @@ public class TempManager : MonoBehaviour
         TurnManager.Instance.Players.Add(player);
 
         LogManager.Instance.PlayerNumber = 2;
+    }
+
+    void OnApplicationQuit()
+    {
+        Shader.SetGlobalInt("_runtime", 0);
     }
 }

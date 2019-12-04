@@ -10,6 +10,9 @@ public class PointAbility : Ability
     public float AOEMaxRange;
     public float AOEDelay;
     public float AOEDamage;
+    [Space]
+    public Vector3 FXScale;
+    public GameObject FXPrefab;
 
     LineRenderer _rangeRenderer;
     LineRenderer _aimRenderer;
@@ -110,7 +113,7 @@ public class PointAbility : Ability
     public override AbilityTickable AbilityLogic(Vector2 target)
     {
         AOEObject ability = new GameObject().AddComponent<AOEObject>();
-        ability.Init(Owner, target, AOERadius, AOEDelay, AOEDamage);
+        ability.Init(Owner, target, AOERadius, AOEDelay, AOEDamage, FXPrefab, FXScale);
         return ability;
     }
 
@@ -128,14 +131,18 @@ public class AOEObject : AbilityTickable
     float _damage;
     float _delay;
     Unit _owner;
+    GameObject _fx;
+    Vector3 _scale;
 
-    public void Init(Unit owner, Vector2 position, float radius, float delay, float damage)
+    public void Init(Unit owner, Vector2 position, float radius, float delay, float damage, GameObject fx, Vector3 fxScale)
     {
         _owner = owner;
         _position = position;
         _radius = radius * radius;
         _delay = SettingManager.Instance.CurrentGameSetting.MovementTimeWindow - delay;
         _damage = damage;
+        _fx = fx;
+        _scale = fxScale;
 
         Init(SettingManager.Instance.CurrentGameSetting.MovementTimeWindow);
     }
@@ -146,6 +153,8 @@ public class AOEObject : AbilityTickable
 
         if (_duration <= _delay)
         {
+            Instantiate(_fx, new Vector3(_position.x, _owner.transform.position.y, _position.y), Quaternion.identity).transform.localScale = _scale;
+
             foreach (Player player in TurnManager.Instance.Players)
             {
                 if (_owner.Owner == player)

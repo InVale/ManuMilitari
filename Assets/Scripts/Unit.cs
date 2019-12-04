@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour
 
     //Specs
     public float MaxHealth = 100;
+    public float ViewDistance = 5;
 
     [SerializeField] List<Ability> _unitAbilities = new List<Ability>();
     public List<Ability> UnitAbilities { get; private set; } = new List<Ability>();
@@ -22,12 +23,21 @@ public class Unit : MonoBehaviour
     public float Health { get; private set; }
     public bool IsDead => Health == 0;
 
+    FieldOfView _view;
+
     public void Init(Player owner, int id, Transform position)
     {
         Position = new Vector2(position.position.x, position.position.z);
         Rotation = position.eulerAngles.y;
         Owner = owner;
         ID = id;
+
+        if (owner.MyType == PlayerType.LOCAL)
+        {
+            _view = new GameObject().AddComponent<FieldOfView>();
+            _view.name = "[RUNTIME - Unit] View";
+            _view.Init(position.position, ViewDistance, TempManager.Instance.FogViewMaterial);
+        }
     }
 
     public void Start ()
@@ -65,6 +75,9 @@ public class Unit : MonoBehaviour
         transform.position = pos;
 
         transform.eulerAngles = new Vector3(0, Rotation, 0);
+
+        if (_view)
+            _view.Init(transform.position, ViewDistance, TempManager.Instance.FogViewMaterial);
     }
 
     public void Damage (float damage)

@@ -72,9 +72,10 @@ public class Movement : Ability
     {
         target.y = Owner.transform.position.y;
 
-        if (Vector3.Distance(Owner.transform.position, target) <= MovementRange)
-            if (Physics.Linecast(Owner.transform.position, target, SettingManager.Instance.MovementObstaclesLayer))
-                return false;
+        if (Vector3.Distance(Owner.transform.position, target) > MovementRange)
+            return false;
+        if (Physics.Linecast(Owner.transform.position, target, SettingManager.Instance.MovementObstaclesLayer))
+            return false;
 
         if (!_movementOrderVisualizer)
         {
