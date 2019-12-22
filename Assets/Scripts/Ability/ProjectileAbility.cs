@@ -84,6 +84,7 @@ public class ProjectileAbility : Ability
     {
         GameObject proj = Instantiate(ProjectilePrefab);
         proj.transform.position = Owner.transform.position;
+        proj.transform.eulerAngles = new Vector3(0, -Vector2.SignedAngle(Vector2.up, target - Owner.Position), 0);
         proj.transform.localScale = Vector3.one * 0.25f;
         ProjectileObject projectile = proj.AddComponent<ProjectileObject>();
         projectile.Init(Owner, (ProjectileRange / ProjectileSpeed), (target - Owner.Position).normalized, ProjectileSpeed, ProjectileDamage);

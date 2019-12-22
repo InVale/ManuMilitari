@@ -9,12 +9,10 @@
 		Tags { "RenderType"="Opaque" }
 		LOD 200
 		
-		//#ifdef RUNTIME
 		Stencil {
 			Ref [_runtime]
 			Comp equal
 		}
-		//#endif
 		
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
@@ -38,9 +36,6 @@
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
-#ifdef RUNTIME
-			o.Albedo = float3(1, 0, 0);
-#endif
 			// Metallic and smoothness come from slider variables
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;

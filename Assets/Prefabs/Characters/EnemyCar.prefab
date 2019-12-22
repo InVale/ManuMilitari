@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2708467558804178166}
   - component: {fileID: 7222937573767263013}
   m_Layer: 11
-  m_Name: AlliedCar
+  m_Name: EnemyCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,26 +241,50 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2358524, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     - target: {fileID: 2364394, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2364394, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     - target: {fileID: 2310762, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2310762, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     - target: {fileID: 2345572, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2345572, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     - target: {fileID: 2331424, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2331424, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     - target: {fileID: 2342306, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2342306, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2751912d35337954f85aaf1b68146189, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8dd7c8ef327b6b44b97a9a3d8d7e1787, type: 3}
 --- !u!4 &2549305195159588032 stripped
