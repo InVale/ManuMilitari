@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
         {
             _view = new GameObject().AddComponent<FieldOfView>();
             _view.name = "[RUNTIME - Unit] View";
-            _view.Init(position.position, ViewDistance, TempManager.Instance.FogViewMaterial);
+            _view.Init(position.position, ViewDistance, TempManager.Instance.FogViewMaterial, SettingManager.Instance.VisionObstaclesLayer);
         }
     }
 
@@ -77,7 +77,7 @@ public class Unit : MonoBehaviour
         transform.eulerAngles = new Vector3(0, Rotation, 0);
 
         if (_view)
-            _view.Init(transform.position, ViewDistance, TempManager.Instance.FogViewMaterial);
+            _view.Init(transform.position, ViewDistance, TempManager.Instance.FogViewMaterial, SettingManager.Instance.VisionObstaclesLayer);
     }
 
     public void Damage (float damage)
@@ -106,5 +106,7 @@ public class Unit : MonoBehaviour
     void Death ()
     {
         gameObject.SetActive(false);
+        if (_view)
+            _view.gameObject.SetActive(false);
     }
 }

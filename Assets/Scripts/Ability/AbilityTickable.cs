@@ -4,11 +4,13 @@ using UnityEngine;
 
 public abstract class AbilityTickable : MonoBehaviour
 {
+    public Unit Owner;
     protected float _duration;
 
-    public void Init (float duration)
+    public void Init (Unit owner, float duration)
     {
         _duration = duration;
+        Owner = owner;
     }
 
     //Return false if ticking should stop

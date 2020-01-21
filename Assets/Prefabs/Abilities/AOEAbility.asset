@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AOEAbility
   m_EditorClassIdentifier: 
   AbilityIcon: {fileID: 21300000, guid: 3765b5090e880cb4390dd1bfac300c2a, type: 3}
-  AOERadius: 1.5
+  AOERadius: 1.2
   AOEMaxRange: 9
-  AOEDelay: 0.6
+  AOEDelay: 1.25
   AOEDamage: 3
   FXScale: {x: 0.5, y: 0.5, z: 0.5}
   FXPrefab: {fileID: 163066, guid: 53777b8572d1e7242bc90044f62667ce, type: 3}

@@ -52,7 +52,7 @@ public class AnimationManager : MonoBehaviour
 
                 for (int i = 0; i < _abilitiesToTick.Count; i++)
                 {
-                    if (!_abilitiesToTick[i].TickMe(SettingManager.Instance.AnimationTimestep, currentStep == stepsToFinish))
+                    if (_abilitiesToTick[i].Owner.IsDead || !_abilitiesToTick[i].TickMe(SettingManager.Instance.AnimationTimestep, currentStep == stepsToFinish))
                     {
                         Destroy(_abilitiesToTick[i].gameObject);
                         _abilitiesToTick.RemoveAt(i);

@@ -49,7 +49,7 @@ public class FocusManager : MonoBehaviour
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (!_focusedAbility && Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));

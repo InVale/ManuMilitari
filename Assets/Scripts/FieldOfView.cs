@@ -9,7 +9,7 @@ public class FieldOfView : MonoBehaviour
 {
     const float ViewAngle = 360;
 
-    LayerMask _obstacleMask => SettingManager.Instance.MovementObstaclesLayer;
+    LayerMask _obstacleMask; //=> SettingManager.Instance.MovementObstaclesLayer;
     float _meshResolution => SettingManager.Instance.MoveAreaResolution;
     int _edgeResolveIterations => SettingManager.Instance.MoveAreaEdgeIteration;
     float _edgeDstThreshold => SettingManager.Instance.MoveAreaEdgeDistanceThreshold;
@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour
         _viewMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
     }
 
-    public void Init(Vector3 position, float viewRadius, Material viewMaterial, float cutawayDistance = 0f)
+    public void Init(Vector3 position, float viewRadius, Material viewMaterial, LayerMask _obstacles, float cutawayDistance = 0f)
     {
         gameObject.SetActive(true);
         transform.position = position;
@@ -45,6 +45,7 @@ public class FieldOfView : MonoBehaviour
         _viewRadius = viewRadius;
         _maskCutawayDst = cutawayDistance;
         _viewMeshRenderer.material = viewMaterial;
+        _obstacleMask = _obstacles;
 
         DrawFieldOfView();
     }

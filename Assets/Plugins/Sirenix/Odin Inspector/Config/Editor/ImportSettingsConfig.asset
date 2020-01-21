@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e3a90d61ad35d478f92fcc9cec2ceb, type: 3}
-  m_Name: MortarMovement
+  m_Script: {fileID: 188390376, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
+  m_Name: ImportSettingsConfig
   m_EditorClassIdentifier: 
-  AbilityIcon: {fileID: 21300000, guid: 48335e61eb13b204db1ae692388c0108, type: 3}
-  MovementSpeed: 0.8
-  AttackOnArrival: 0
-  AttackRange: 2
-  AttackDamage: 1
+  automateBeforeBuild: 1

@@ -104,15 +104,13 @@ public class ProjectileObject : AbilityTickable
     float _speed;
     float _damage;
     bool _done;
-    Unit _owner;
 
     public void Init(Unit owner, float duration, Vector2 direction, float speed, float damage)
     {
-        _owner = owner;
         _direction = direction;
         _speed = speed;
         _damage = damage;
-        Init(duration);
+        Init(owner, duration);
     }
 
     public override bool TickMe(float delta, bool finalTick)
@@ -131,7 +129,7 @@ public class ProjectileObject : AbilityTickable
         Unit unit = collider.GetComponent<Unit>();
         if (unit)
         {
-            if (unit == _owner)
+            if (unit == Owner)
                 return;
             unit.Damage(_damage);
         }

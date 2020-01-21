@@ -50,7 +50,7 @@ public class Movement : Ability
 
         _aimRenderer.gameObject.SetActive(AttackOnArrival);
 
-        _rangeVisualizer.Init(Owner.transform.position, MovementRange, TempManager.Instance.MovementAreaMaterial, SettingManager.Instance.MoveAreaCutawayDistance);
+        _rangeVisualizer.Init(Owner.transform.position, MovementRange, TempManager.Instance.MovementAreaMaterial, SettingManager.Instance.MovementObstaclesLayer, SettingManager.Instance.MoveAreaCutawayDistance);
     }
 
     public override void UpdateAiming(Vector3 target)
@@ -153,7 +153,6 @@ public class Movement : Ability
 
 public class MovementTick : AbilityTickable
 {
-    Unit _unit;
     Vector2 _destination;
     float _movementSpeed;
     bool _attack;
@@ -172,18 +171,18 @@ public class MovementTick : AbilityTickable
 
     public void Init (Unit unit, Vector2 destination, float movementSpeed)
     {
-        _unit = unit;
         _destination = destination;
         _movementSpeed = movementSpeed;
 
         _dir = destination - unit.Position;
+        _dir.Normalize();
 
-        Init(SettingManager.Instance.CurrentGameSetting.MovementTimeWindow);
+        Init(unit, SettingManager.Instance.CurrentGameSetting.MovementTimeWindow);
     }
 
     public override bool TickMe(float delta, bool finalTick)
     {
-        Vector2 newPos = _unit.Position + _dir * _movementSpeed * delta;
+        Vector2 newPos = Owner.Position + _dir * _movementSpeed * delta;
         Vector2 newDir = _destination - newPos;
         bool arrived = false;
         if (newDir.x == 0 || Mathf.Sign(newDir.x) != Mathf.Sign(_dir.x))
@@ -193,7 +192,7 @@ public class MovementTick : AbilityTickable
                 arrived = true;
             }
 
-        arrived = arrived || !_unit.MoveTo(newPos);
+        arrived = arrived || !Owner.MoveTo(newPos);
         if (arrived)
         {
             Attack();
@@ -207,7 +206,7 @@ public class MovementTick : AbilityTickable
     {
         foreach (Player player in TurnManager.Instance.Players)
         {
-            if (_unit.Owner == player)
+            if (Owner.Owner == player)
                 continue;
 
             foreach (Unit unit in player.Units)
@@ -215,8 +214,8 @@ public class MovementTick : AbilityTickable
                 if (unit.IsDead)
                     continue;
 
-                if ((unit.Position - _unit.Position).sqrMagnitude <= _radius)
-                    if (!Physics.Linecast(_unit.transform.position, new Vector3(unit.Position.x, _unit.transform.position.y, unit.Position.y), SettingManager.Instance.ObstaclesLayer))
+                if ((unit.Position - Owner.Position).sqrMagnitude <= _radius)
+                    if (!Physics.Linecast(Owner.transform.position, new Vector3(unit.Position.x, Owner.transform.position.y, unit.Position.y), SettingManager.Instance.ObstaclesLayer))
                         unit.Damage(_damage);    
             }
         }

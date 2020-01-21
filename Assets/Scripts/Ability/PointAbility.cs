@@ -130,13 +130,11 @@ public class AOEObject : AbilityTickable
     float _radius;
     float _damage;
     float _delay;
-    Unit _owner;
     GameObject _fx;
     Vector3 _scale;
 
     public void Init(Unit owner, Vector2 position, float radius, float delay, float damage, GameObject fx, Vector3 fxScale)
     {
-        _owner = owner;
         _position = position;
         _radius = radius * radius;
         _delay = SettingManager.Instance.CurrentGameSetting.MovementTimeWindow - delay;
@@ -144,7 +142,7 @@ public class AOEObject : AbilityTickable
         _fx = fx;
         _scale = fxScale;
 
-        Init(SettingManager.Instance.CurrentGameSetting.MovementTimeWindow);
+        Init(owner, SettingManager.Instance.CurrentGameSetting.MovementTimeWindow);
     }
 
     public override bool TickMe(float delta, bool finalTick)
@@ -153,11 +151,11 @@ public class AOEObject : AbilityTickable
 
         if (_duration <= _delay)
         {
-            Instantiate(_fx, new Vector3(_position.x, _owner.transform.position.y, _position.y), Quaternion.identity).transform.localScale = _scale;
+            Instantiate(_fx, new Vector3(_position.x, Owner.transform.position.y, _position.y), Quaternion.identity).transform.localScale = _scale;
 
             foreach (Player player in TurnManager.Instance.Players)
             {
-                if (_owner.Owner == player)
+                if (Owner.Owner == player)
                     continue;
 
                 foreach (Unit unit in player.Units)
@@ -166,7 +164,7 @@ public class AOEObject : AbilityTickable
                         continue;
 
                     if ((unit.Position - _position).sqrMagnitude <= _radius)
-                        if (!Physics.Linecast(_owner.transform.position, new Vector3(unit.Position.x, _owner.transform.position.y, unit.Position.y), SettingManager.Instance.ObstaclesLayer))
+                        if (!Physics.Linecast(Owner.transform.position, new Vector3(unit.Position.x, Owner.transform.position.y, unit.Position.y), SettingManager.Instance.ObstaclesLayer))
                             unit.Damage(_damage);
                 }
             }

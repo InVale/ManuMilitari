@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21706b0a4b13fba46bef4661940f5dba, type: 3}
   m_Name: ClassicSettings
   m_EditorClassIdentifier: 
-  MovementTimeWindow: 5
+  MovementTimeWindow: 2.5
